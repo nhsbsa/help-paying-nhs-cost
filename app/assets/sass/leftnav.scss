@@ -1,0 +1,49 @@
+.side-nav {
+  margin-top: 45px;
+}
+
+.side-nav li {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 0;
+  width: 99%;
+  list-style: none;
+}
+
+.side-nav a {
+  padding: 12px 30px 8px 15px;
+  text-decoration: none;
+  font-size: 19px;
+  display: block;
+  position: relative;
+}
+
+.side-nav a:hover {
+  background-color: #dee0e2;
+}
+
+.side-nav .active {
+  background-color: #005ea5;
+  color: white;
+}
+
+.side-nav .active:hover {
+  color: #000;
+  background: none repeat scroll 0% 0% #F8F8F8;
+}
+
+.side-nav a:after {
+  position: absolute;
+  top: 50%;
+  margin-top: -12px;
+  right: 10px;
+  float: right;
+  content: "\203A";
+}
+
+.side-nav h4 {
+  font-weight: 700;
+}
+
+.column-two-thirds h1 {
+  margin-top: 45px;
+}

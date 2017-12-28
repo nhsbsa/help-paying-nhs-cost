@@ -149,39 +149,29 @@ details{
     <div class="grid-row">
       <div class="column-two-thirds">
 
-        <h1 class="heading-large">What type of Pension Credit do you get?</h1>
- <p>There are 2 types of Pension Credit, Guarantee Credit and Savings Credit.</p>
-<!--        <p>Although similar in name, contributions-based ESA doesn't automatically entitle you to help with NHS costs.</p> -->
-    
-      
-             <details>
+
+        <h1 class="heading-large">What type of Pension Credit do {{partnerortext}} you get?</h1>
+
+         <p> There are 2 types of Pension Credit, Guarantee Credit and Savings Credit.</p>
+            <details>
               <summary><span class="summary">I'm not sure what type I get</span></summary>
-                <div class="panel panel-border-narrow" id="details-content-0" aria-hidden="false">
 
-            <!--     <h3 class="heading-medium">
-                Check your benefit payment letter
-                </h3>
+              <div class="panel panel-border-narrow" id="details-content-0" style="margin-top:1em">
+                <h3 class="heading-medium">Check your benefit payment letter</h3>
 
-                  <p>On page 3 of your benefit letter, look under the heading <strong>‘Income and Benefits’</strong>.</p>
-                  <p> It will say either:</p>
+                <h2 class="heading-small">Guarantee Credit</h2>
+                <p>Guarantee Credit tops up your weekly income if it’s below £159.35<!--  (for single people) or £243.25 (for couples) -->.</p>
 
-                    <ul class="list-bullet">
-                    <li>'your <strong>income-related</strong> entitlement is', or </li>
-                    <li>'you are entitled to <strong>contribution based</strong>'</li>
-                    </ul>
-                    <br>
-                    <p>If you're still unsure contact the <a href="https://www.gov.uk/contact-jobcentre-plus/existing-benefit-claims">Jobcentre Plus Helpline</a>.</p> -->
+                <h2 class="heading-small">Savings Credit</h2>
+                <p>Savings Credit is a payment for people who have saved some money towards their retirement, for example a pension. <p>
+                <p><!-- You have to have a minimum income of £137.35 a week  if you're single, and £218.42 a week if you're in a couple. -->The most in Savings Credit you can get per week is £13.20.</p>
 
-                     <p>Find out more about the <a href="https://www.gov.uk/employment-support-allowance/types-of-esa" target="_blank">different types of ESA</a>.</p>
-                    <p>If you're still unsure contact the <a href="https://www.gov.uk/contact-jobcentre-plus/existing-benefit-claims">Jobcentre Plus Helpline</a>.</p>
-
-                  <!-- <img class="uc-statement" src="/public/images/bsa/ESA-income-letter2.png" alt="an image showing that your type of ESA is shown towards the bottom of your letter.">
-<br>
-                       -->
+                <p>If you're still unsure contact the <a href="https://www.gov.uk/contact-pension-service">Pension Service helpline</a>.</p>
               </div>
             </details>
 
-        <form action="pencred-handler" method="get" class="form">
+
+        <form action="pensioncredit-handler" method="get" class="form">
 
         <div class="form-group">
           <fieldset>
@@ -191,34 +181,21 @@ details{
           <br>
 
           <div class="multiple-choice" style="line-height: 1.25; padding-bottom: 0.6em">
-            <input id="incomeesa" type="radio" name="benefits" value="incomeesa">
-            <label for="incomeesa" id="incomeesa" class=" block-label">
+            <input id="guaranteecred" type="radio" name="pensioncredit" value="guaranteecred">
+            <label for="guaranteecred" id="guaranteecred" class=" block-label">
 
               <p class="list-discription">Guarantee Credit</p>
-              <span class="font-xsmall"></span>
           </label>
         </div>
 
           <div class="multiple-choice" style="line-height: 1.25; padding-bottom: 0.6em">
-            <input id="contesa" type="radio" name="benefits" value="contesa">
-            <label for="contesa" id="contesa" class=" block-label">
+            <input id="savingcred" type="radio" name="pensioncredit" value="savingcred">
+            <label for="savingcred" id="savingcred" class=" block-label">
 
               <p class="list-discription">Savings Credit</p>
-<!--               <span class="font-xsmall">Usually you get this if you’ve paid enough National Insurance contributions in the last 2 full tax years. </span> -->
+              <span class="font-xsmall">The maximum you can get per week is £13.20</span>
             </label>
           </div>
-
-                 <div class="multiple-choice" style="line-height: 1.25; padding-bottom: 0.6em">
-
-            <input id="contesa" type="radio" name="benefits" value="contesa">
-            <label for="contesa" id="contesa" class=" block-label">
-
-              <p class="list-discription">{{iwe}} get both</p>
-            </label>
-          </div>
-
-
-
           </fieldset>
         </div>
 
@@ -234,8 +211,6 @@ details{
         </form>
 
       </div>
-
-    </div>
 
 </main>
 {% endblock %} 

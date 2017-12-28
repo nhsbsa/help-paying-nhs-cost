@@ -25,14 +25,16 @@
     <div class="grid-row">
       <div class="column-two-thirds">
 
-        <h1 class="heading-large">What benefits or tax credits do {{partnerortext}} get?</h1>
+        <h1 class="heading-large">Do {{partnerortext}} get any of these benefits?</h1>
 <!--         <div class="panel panel-border-narrow">
         <p>There are some benefits with similar names.<br>
         You need to be sure of the benefit you are getting as some benefits, although similar in name, <span class= "strong">do not</span> give you the same entitlements.</p>
         <p>Check your benefits payment letter or contact the <a href="https://www.gov.uk/contact-jobcentre-plus/existing-benefit-claims">Jobcentre Plus Helpline</a>.</p>
         </div> -->
 
-        <h2 class="body-text">Select all that apply</h2><br>
+
+
+<h2 class="body-text">Select all that apply</h2><br>
 
 
 
@@ -45,18 +47,18 @@
 
               <div class="multiple-choice multiple-radio">
                 <input id="taxcredits" name="taxcredits" type="checkbox" value="true">
-                <label for="taxcredits">Tax credits</label>
+                <label for="taxcredits">Tax Credit</label>
               </div>
 
               <div class="multiple-choice multiple-radio">
                 <input id="incomesupport" name="incomesupport" type="checkbox" value="true">
                 <label for="incomeSupport">Income Support</label>
               </div>
-
+<!-- 
               <div class="multiple-choice multiple-radio">
                 <input id="uniCredit" name="uc" type="checkbox" value="true">
                 <label for="uniCredit">Universal Credit</label>
-              </div>
+              </div> -->
 
               <div class="multiple-choice multiple-radio">
                 <input id="esa" name="esa" type="checkbox" value="true">
@@ -76,14 +78,38 @@
               <p class="form-block">or</p>
 
               <div class="multiple-choice multiple-radio">
-                <input id="continue" name="none" type="checkbox" value="true">
-                <label for="continue">No, {{iwe}} don't get any of these</label>
+                <input id="none" name="none" type="checkbox" value="true">
+                <label for="none">No, {{iwe}} don't get any of these benefits</label>
               </div>
 
             </fieldset>
 
           </div>
+                       <details>
+              <summary><span class="summary">If your benefit isn't listed or has recently changed</span></summary>
+                <div class="panel panel-border-narrow" id="details-content-0" aria-hidden="false">
 
+                <h3 class="heading-medium">
+                We don't ask about these benefits because they do not entitle you to help with NHS costs:
+                </h3>
+                    <ul class="list-bullet">
+                    <li>Personal Independence Payment (PIP)</li>
+                    <li>Armed Forces Independence Payment (AFIP)</li>
+                    <li>Disability Living Allowance (DLA)</li>
+                    <li>Incapacity Benefit</li>
+                    <li>Attendance Allowance</li>
+                    <li>Carer's Allowance</li>
+                    <li>Housing Benefit</li>
+                    <li>Child Benefit</li>
+                    <li>Council Tax Benefit</li>
+
+                    </ul>
+<br>
+                    <p>It's important you know what benefit you get. If you're not sure contact the <a href="https://www.gov.uk/contact-jobcentre-plus/existing-benefit-claims">Jobcentre Plus Helpline</a>.</p>
+
+              </div>
+            </details>
+<br><br>
           <div class="form-group">
             <input class="button" type="submit" value="Next">
           </div>
@@ -93,7 +119,7 @@
       </div>
 
 
-<div class="grid-row">
+<!-- <div class="grid-row">
 <div class="column-two-thirds">
 
 <div class="report-a-problem-container" style="display:none">
@@ -125,7 +151,7 @@
     </div>
   </div>
 </div>
-    </div>
+    </div> -->
 
 
 

@@ -16,6 +16,7 @@ module.exports = router
 //create an applicant
 var applicant = person.createPerson(
   this.age = undefined,
+  this.multiBenefits = false,
   this.need = undefined,
   this.country = "england",
   this.gp = undefined,
@@ -57,8 +58,8 @@ var variText = {
       partnersText = 'your';
       partnersAndText = "your";
       partnersCapAndText = "Your";
-      parentText = "Is your parent or guardian's";
       partnerBenefits = "Any";
+      parentText = "Is your parent or guardian's";
       iWe = 'I';
       jointOrText = 'your';
       combinedOrText = 'your';
@@ -77,9 +78,9 @@ var variText = {
       partnersText = "your or your partner's";
       partnersAndText = "your and your partner's";
       partnersCapAndText = "Your and your partner's";
+      partnerBenefits = "Your partner and any";
       parentText = "Is your parent or guardian's";
       parentOrText = "your or your parents";
-      partnerBenefits = "Your partner and any";
       iWe = 'we';
       jointOrText = 'your joint';
       combinedOrText = "your and your partner's combined";
@@ -88,7 +89,6 @@ var variText = {
       singleJointUCElement = 'Did you and your partner have a combined take-home pay of £435 or less in your last Universal Credit period?'
       ucResults = 'Because you and your partner get Universal Credit and have a combined take-home pay of £935 or less; you, your partner and any children under 20 included on your claim,';
       ucResultsElement = 'Because you and your partner get Universal Credit and have a combined take-home pay of £435 or less; you, your partner,'
-  
   }
   };
 
@@ -262,7 +262,7 @@ var querystring = require('querystring');
             }
         } else { //over 20
             if (req.query.taxcreditsIncome === 'no') {
-                res.render('checker/1/passported-benefits', {
+                res.render('checker/1/pregnancy', {
                 'partnerortext' : partnerOrText,
                 'iwe' : iWe
              	});
@@ -301,7 +301,7 @@ var querystring = require('querystring');
         } else {
           if (tcType === 'none') {
             setPartnerText(applicant.partner);
-            res.render('checker/1/passported-benefits-under20', {
+            res.render('checker/1/pregnancy', {
               'partnercommatext' : partnerCommaText
             });
           } else {
@@ -315,7 +315,7 @@ var querystring = require('querystring');
     // benefits
         router.get(/benefits-handler/, function (req, res) {
       if (req.query.benefittc == 'yes') {
-          res.render('checker/1/benefits-type-question', {
+          res.render('checker/1/uc-getting-paid-step1', {
               'partnerortext' : partnerOrText,
               'iwe' : iWe
           });
@@ -324,9 +324,25 @@ var querystring = require('querystring');
       }
     });
 
+        router.get(/getuc-handler/, function (req, res) {
+      if (req.query.getuc == 'yes') {
+        res.render('checker/1/uc-claim-type-v2', {
+          'jointortext' : jointOrText
+        }); 
+      } else if (req.query.getuc == 'no') {
+        res.render('checker/1/benefits-type-question', {
+          'partnerortext' : partnerOrText,
+          'iwe' : iWe
+         });
+      } else {
+        res.redirect('pregnancy');
+      }
+});
 
-        router.get('checker/1/results/full-exemption-benefits', function (req, res) {
-          res.render('checker/1/results/full-exemption-benefits', {
+
+
+        router.get('checker/1/results/full-exemption-benefits-travel', function (req, res) {
+          res.render('checker/1/results/full-exemption-benefits-travel', {
             'bentype' : benType,
             'partnercommatext' : partnerCommaText
           });
@@ -335,97 +351,134 @@ var querystring = require('querystring');
 var benType;
     // passported benefits handler
       router.get(/ben-check/, function (req, res) {
-
-        // incomesupport
-        // tax credit === 'true' 
-          // if esa === 'true'
-          // else if uc == true
-          // else jsa == true
-          // else just tax credit
-          // else 
-        // uc
-        // esa
-        // jsa
-        // pen cred
-
         if (req.query.incomesupport == "true") {
-          benType = 'Income Support';
-          console.log(req.query);
-            res.render('checker/1/results/full-exemption-benefits', {
-            'bentype' : benType,
-            'partnerbenefits' : partnerBenefits,
-            'partnercommatext' : partnerCommaText
-          });
+                  console.log(req.query);
+                  benType = 'Income Support';
+          res.render('checker/1/results/full-exemption-benefits-income-support',{
+        'partnerbenefits' : partnerBenefits, 
+        'partnerortext' : partnerOrText
+      });
+    
         } else if (req.query.taxcredits == "true") {
+          applicant.claimsTaxCredits = true;
           if (req.query.esa == "true") {
-            res.render('checker/1/tax-credits-over20-new',{
-            'partnerortext' : partnerOrText,
-              'iwe' : iWe
+            console.log(req.query);
+            res.render('checker/1/benefits-esa',{
+              'partnerortext' : partnerOrText,
             });
           } else if (req.query.jsa == "true") {
-            res.render('checker/1/tax-credits-over20-new',{
-              'partnerortext' : partnerOrText,
-              'iwe' : iWe
-            });
-          } else if (req.query.uc == "true") {
-            res.render('checker/1/benefits-uc-tc',{
-            'bentype' : benType,
-            'partnerbenefits' : partnerBenefits,
-            'partnercommatext' : partnerCommaText
-          });
+            res.render('checker/1/benefits-jsa');
+          } else if (req.query.penCredit == "true") {
+            res.render('checker/1/benefits-pension');
           } else {
-            res.render('checker/1/tax-credits-over20-new',{
-'partnerortext' : partnerOrText,
-              'iwe' : iWe
+            // tc only
+            res.render('checker/1/tax-credits-over20',{
+               'partnerandtext' : partnerAndText,
+               'iwe' : iWe
             });
           }
+
         } else if (req.query.uc == "true") {
           setPartnerText(applicant.partner);
-          res.render('checker/1/uc-claim-type-v2', {
-            'jointortext' : jointOrText
+          res.render('checker/1/uc-claim-tyben-check', {
+      
             // 'partnerortext' : partnerOrText
           });
         } else if (req.query.esa == "true") {
           benType = 'income related Employment and Support Allowance (ESA)';
           res.render('checker/1/benefits-esa', {
-            'bentype' : benType,
-            'partnercommatext' : partnerCommaText,
-            'iwe' : iWe
+          'partnerortext' : partnerOrText,
           });
         } else if (req.query.jsa == "true") {
           benType = 'income based Job Seekers Allowance (JSA)';
           res.render('checker/1/benefits-jsa', {
-            'bentype' : benType,
-            'partnercommatext' : partnerCommaText
+          'partnerortext' : partnerOrText,
           });
         } else if (req.query.pencredit == "true") {
-          benType = 'Pension Credit (Guarantee Credit)';
+          benType = 'Pension credit (Guarantee Credit)';
           res.render('checker/1/benefits-pension', {
-            'bentype' : benType,
-            'partnercommatext' : partnerCommaText
+
           });
         } else if (req.query.none == 'true') {
-          if (applicant.age > 60) {
-            res.redirect('war-pension');
-          } else {
             res.redirect('pregnancy');
-          }
+  
         }
       });
 
+    // passported benefits handler over 63
 
-          // ESA type handler
-        router.get(/esa-handler/, function (req, res) {
-      if (req.query.benefits=== 'incomeesa') {
-        benType = 'income-related ESA';
-        res.render('checker/1/results/full-exemption-benefits', {
-        'bentype' : benType,
-        'partnerbenefits' : partnerBenefits
-          });
+          router.get(/ben63-check/, function (req, res) {
+            if (req.query.taxcredits == "true") {
+            res.redirect('tax-credits-income'); 
+
+          } else if (req.query.pencredit == "true") {
+            benType = 'Pension Credit (Guarantee Credit)';
+            res.render('apply/preapp/benefits-pension', {
+        });
+          } else if (req.query.none == 'true') {
+              res.redirect('war-pension')
+          }
+        });
+
+          router.get(/taxcredit-type-handler/, function (req, res) {
+      if (req.query.taxcreditsType == 'wtc') {
+      res.redirect('preapp-summary'); 
+      } else {
+        res.redirect('tax-credits-income');
+      }
+});
+          
+
+
+// esa handler
+          router.get(/esa-handler/, function (req, res) {
+      if (req.query.estype === "incomeesa") {
+      res.render('checker/1/results/full-exemption-benefits-esa',{
+        'partnerbenefits' : partnerBenefits, 
+        'partnerortext' : partnerOrText
+      });
+      } else if (applicant.claimsTaxCredits) {
+          res.render('checker/1/tax-credits-over20',{
+               'partnerandtext' : partnerAndText,
+      });
       } else {
         res.redirect('pregnancy');
       }
-    });
+});
+
+
+    // child tax credit handler
+          router.get(/taxcredit-income-handler/, function (req, res) {
+      if (req.query.taxcreditsIncome == 'yes') {
+      res.redirect('full-exemption-tc'); 
+      } else {
+        res.redirect('preapp-summary');
+      }
+});
+              // jsa handler
+          router.get(/jsa-handler/, function (req, res) {
+      if (req.query.jsatype === "incomejsa") {
+      res.render('checker/1/results/full-exemption-benefits-jsa',{
+        'partnerbenefits' : partnerBenefits, 
+        'partnerortext' : partnerOrText
+    }); 
+      } else {
+        res.redirect('pregnancy');
+      }
+});
+
+          
+    // pension credit handler
+          router.get(/pensioncredit-handler/, function (req, res) {
+      if (req.query.pensioncredit == 'guaranteecred') {
+      res.render('checker/1/results/full-exemption-pencredits',{
+        'partnerbenefits' : partnerBenefits, 
+        'partnerortext' : partnerOrText
+    });  
+      } else {
+        res.redirect('pregnancy');
+      }
+});
       
 
 var benType;
@@ -433,7 +486,7 @@ var benType;
       router.get(/passportedBen-u20/, function (req, res) {
         if (req.query.benefits ==="incomeSupport") {
           benType = 'Income Support';
-          res.render('checker/1/results/full-exemption-benefits', {
+          res.render('checker/1/results/full-exemption-benefits-travel', {
             'bentype' : benType,
             'partnercommatext' : partnerCommaText
           });
@@ -446,19 +499,19 @@ var benType;
       });
         } else if (req.query.benefits ==="jsa") {
           benType = 'income based Job Seekers Allowance (JSA)';
-          res.render('checker/1/results/full-exemption-benefits', {
+          res.render('checker/1/results/full-exemption-benefits-travel', {
             // 'bentype' : benType,
             // 'partnercommatext' : partnerCommaText
           });
         } else if (req.query.benefits ==="esa") {
           benType = 'income related Employment and Support Allowance (ESA)';
-          res.render('checker/1/results/full-exemption-benefits', {
+          res.render('checker/1/results/full-exemption-benefits-travel', {
             // 'bentype' : benType,
             // 'partnercommatext' : partnerCommaText
           });
         } else if (req.query.benefits ==="penCredit") {
           benType = 'Pension Credit (Guarantee Credit)';
-          res.render('checker/1/results/full-exemption-benefits', {
+          res.render('checker/1/results/full-exemption-benefits-travel', {
             // 'bentype' : benType,
             // 'partnercommatext' : partnerCommaText
           });
@@ -476,7 +529,7 @@ var benType;
       router.get(/passportedBen-handler/, function (req, res) {
         if (req.query.benefits ==="incomeSupport") {
           benType = 'Income Support';
-          res.render('checker/1/results/full-exemption-benefits', {
+          res.render('checker/1/results/full-exemption-benefits-travel', {
             'bentype' : benType,
             'partnercommatext' : partnerCommaText
           });
@@ -489,19 +542,19 @@ var benType;
       });
         } else if (req.query.benefits ==="jsa") {
           benType = 'income based Job Seekers Allowance (JSA)';
-          res.render('checker/1/results/full-exemption-benefits', {
+          res.render('checker/1/results/full-exemption-benefits-travel', {
             'bentype' : benType,
             'partnercommatext' : partnerCommaText
           });
         } else if (req.query.benefits ==="esa") {
           benType = 'income related Employment and Support Allowance (ESA)';
-          res.render('checker/1/results/full-exemption-benefits', {
+          res.render('checker/1/results/full-exemption-benefits-travel', {
             'bentype' : benType,
             'partnercommatext' : partnerCommaText
           });
         } else if (req.query.benefits ==="penCredit") {
           benType = 'Pension Credit (Guarantee Credit)';
-          res.render('checker/1/results/full-exemption-benefits', {
+          res.render('checker/1/results/full-exemption-benefits-travel', {
             'bentype' : benType,
             'partnercommatext' : partnerCommaText
           });
@@ -513,25 +566,6 @@ var benType;
             }
       }
     });
-
-
-    // authority assessment handler
-    router.get(/information-you-will-need/, function (req, res) {
-          setPartnerText(applicant.partner);
-          res.render('checker/1/information-you-will-need', {
-            'partnerscapandtext' : partnersCapAndText,
-            'partnerortext' : partnerOrText,
-      })
-    });
-
-      router.get(/universalCredits-handler/, function (req, res) {
-          setPartnerText(applicant.partner);
-          res.render('checker/1/uc-claim-type-v2', {
-            'jointortext' : jointOrText,
-            'partnerortext' : partnerOrText,
-      })
-    });
-
 
           // universal credits income handler
       router.get(/uc-type-handler/, function (req, res) {
@@ -582,16 +616,36 @@ var benType;
     });
 
 
-          // war pensioner handler
+    // war pensioner handler
       router.get(/war-b4handler/, function (req, res) {
       if (req.query.warPension === 'yes') {
         warPension = true;
-        res.redirect('medical-question');
+        res.redirect('diabetes-eng');
       } else {
         warPension = false;
-        res.redirect('medical-question');
+        res.redirect('diabetes-eng');
       }
     });
+      
+
+    // diabetes handler
+      router.get(/diabetes-handler/, function (req, res) {
+      if (req.query.diabetes === 'yes') {
+        res.redirect('diabetes-eng-medicine');
+      } else {
+        res.redirect('medical-exemption');
+      }
+    });
+
+   // diabetes medicine handler
+      router.get(/diabetes-med-handler/, function (req, res) {
+      if (req.query.diamed === 'yes') {
+        res.redirect('care-home');
+      } else {
+        res.redirect('medical-exemption');
+      }
+    });
+
 
 // long term illness yes or no
 router.get(/medicalYes/, function (req, res) {

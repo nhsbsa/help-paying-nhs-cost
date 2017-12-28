@@ -7,46 +7,114 @@
 
 {% block content %}
 
-<main id="content" role="main">
-  <a href="javascript:history.go(-1)" class="link-back">Back</a>
-  <div class="grid-row">
-    <div class="column-two-thirds">
 
-  <h1 class="heading-large">
-    Is your GP practice in Scotland or Wales?
-  </h1>
+  <main id="content" role="main">
 
-      <form action="gp-handler" method="get" class="form">
-        
-        <div class="form-group">
-          
-          <fieldset class="inline">
-            <legend class="visually-hidden">
-              Is your GP practice in Scotland or Wales?
-            </legend>
+    <link href="/public/stylesheets/bsa.css" rel="stylesheet">
 
-            <div class="multiple-choice">
-              <input id="yes" type="radio" name="gpScot" value="yes">
-              <label for="yes">Yes</label>
-            </div>
 
-            <div class="multiple-choice">
-              <input id="no" type="radio" name="gpScot" value="no">
-              <label for="no">No</label>
-            </div>
-            
-          </fieldset>  
-          
+<h1 class="heading-xlarge">What you're entitled to</h1>
+
+
+
+    <div class="grid-row">
+      <div class="column-third">
+
+        <ul class="side-nav" id="details-nav" role="navigation" title="Section navigation">
+          <li role="menuitem">
+            <a href="#prescriptions" title="What you’re entitled to">
+            <h4>NHS prescriptions</h4></a>
+          </li>
+          <li role="menuitem">
+            <a href="#dental" title="Get your certficate">
+            <h4>NHS dental check-ups and treatment</h4></a>
+          </li>
+          <li role="menuitem">
+            <a href="#sight" title="How we worked this out">
+            <h4>NHS sight tests</h4></a>
+          </li>
+          <li role="menuitem">
+            <a href="#glasses" title="What you told us">
+            <h4>new glasses or contact lenses</h4></a>
+          </li>
+          <li role="menuitem">
+            <a href="#repairglasses" title="What you told us">
+            <h4>repairing or replacing your glasses and contact lenses</h4></a>
+          </li>
+          <li role="menuitem">
+            <a href="#wigs" title="What you told us">
+            <h4>NHS wigs and fabric supports</h4></a>
+          </li>
+          <li role="menuitem">
+            <a href="#travel" title="What you told us">
+            <h4>travel for NHS treatment</h4></a>
+          </li>
+        </ul>
+      </div>
+
+
+      <!--tab 1-->
+      <div class="details-block" id="prescriptions">
+        <div class="column-two-thirds">
+          <h1 class="heading-large">NHS Prescriptions</h1>
+         <h2 class="heading-medium">How to get your help</h2>
+          <p>answers1</p>
         </div>
-        
-          <div class="form-group">
-            <input class="button" type="submit"  value="Next">
-          </div>
+      </div>
 
-      </form>
+      <!--tab 2-->
+      <div class="details-block" id="dental">
+        <div class="column-two-thirds">
+          <h1 class="heading-large">NHS dental check-ups and treatment</h1>
+          <p>answers 2</p>
+        </div>
+      </div>
+
+      <!--tab 3-->
+      <div class="details-block" id="sight">
+        <div class="column-two-thirds">
+          <h1 class="heading-large">NHS sight tests</h1>
+          <p>answers 3</p>
+        </div>
+      </div>
+
+      <!--tab 4-->
+      <div class="details-block" id="glasses">
+        <div class="column-two-thirds">
+          <h1 class="heading-large">New glasses or contact lenses</h1>
+          <p>answers 4</p>
+        </div>
+      </div>
+
+      <!--tab 5-->
+      <div class="details-block" id="repairglasses">
+        <div class="column-two-thirds">
+            <h1 class="heading-large">repair glasses</h1>
+            <p>answers 5</p>
+        </div>
+      </div>
+
+            <!--tab 6-->
+      <div class="details-block" id="wigs">
+        <div class="column-two-thirds">
+            <h1 class="heading-large">Wigs and fabric support</h1>
+            <p>answers 5</p>
+        </div>
+      </div>
+
+            <!--tab 7-->
+      <div class="details-block" id="travel">
+        <div class="column-two-thirds">
+            <h1 class="heading-large">travel</h1>
+            <p>answers 5</p>
+        </div>
+      </div>
 
     </div>
-    </div>
-</main>
+  </main>
 
-{% endblock %}
+  <script src="/public/javascripts/jquery-1.11.3.js"></script> 
+  <script src="/public/javascripts/jquery-ui.js"></script> 
+  <script src="/public/javascripts/leftnav.js"></script>
+
+  {% endblock %}

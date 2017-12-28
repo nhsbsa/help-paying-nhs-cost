@@ -7,6 +7,11 @@
 
 {% block content %}
 
+<style>
+.page-header .heading-large {
+  margin: .15em 0 1.25em; }
+</style>
+
 <main id="content" role="main">
 <a href="javascript:history.go(-1)" class="link-back">Back</a>
   <div class="grid-row">
@@ -14,13 +19,14 @@
 
        <!--3- Are you named on a Tax Credits Exemption certificate-->
          <form action="taxcredit-type-handler" method="get" class="form">
-
-    <h2 class="heading-large">Do {{partnerortext}} get any of these tax credits?</h2>
+<header class="page-header" style="margin-top: 1.8em">
+    <h1 class="heading-large" style="margin: .15em 0 1.25em">Which type of tax credits do {{partnerandtext}} get?</h1>
+    </header>
 
           <div class="form-group">
           <fieldset>
             <legend class="visuallyhidden">
-              Do {{partnerortext}} get any of these tax credits?
+              Which type of tax credits do {{partnerandtext}} get?
             </legend>
 
             <div class="multiple-choice">
@@ -30,7 +36,7 @@
             
             <div class="multiple-choice">
               <input id="ctcdis" type="radio" name="taxcreditsType" value="ctcdis">
-              <label for="ctcdis">Working Tax Credit on its own, including a disability element</label>
+              <label for="ctcdis">Working Tax Credit including a disability element</label>
             </div>
                  
             <div class="multiple-choice">
@@ -42,15 +48,29 @@
               <input id="wtc" type="radio" name="taxcreditsType" value="wtc">
               <label for="wtc">Working Tax Credit on its own</label>
             </div>
-
+<!-- 
             <p class="form-block">or</p>
             <div class="multiple-choice">
               <input id="no" type="radio" name="taxcreditsType" value="no">
               <label for="no">No, {{iwe}} don't get tax credits</label>
-            </div>
+            </div> -->
             
           </fieldset>
         </div>
+
+        <details>
+
+  <summary><span class="summary">I'm not sure what type I get</span></summary>
+
+       <p>To find out what help with NHS costs you're entitled to, it's important that you don't guess the answer.</p>
+       <p>If you're not sure what tax credits you get:</p>
+       <ul class="list-bullet">
+       <li>check your tax credit award notice</li>
+       <li>contact the <a href="https://www.gov.uk/government/organisations/hm-revenue-customs/contact/tax-credits-enquiries">tax credits helpline</a></li>
+       </ul>
+
+            </details>
+            <br><br>
         
 <!--submit button-->
         <div class="form-group">
