@@ -381,13 +381,6 @@ var benType;
                'iwe' : iWe
             });
           }
-
-        } else if (req.query.uc == "true") {
-          setPartnerText(applicant.partner);
-          res.render('checker/1/uc-claim-tyben-check', {
-      
-            // 'partnerortext' : partnerOrText
-          });
         } else if (req.query.esa == "true") {
           benType = 'income related Employment and Support Allowance (ESA)';
           res.render('checker/1/benefits-esa', {
@@ -469,6 +462,22 @@ var benType;
       }
 });
 
+              // pension credit handler
+          router.get(/pensioncredit-handler/, function (req, res) {
+      if (req.query.pensioncredit == 'guaranteecred') {
+      res.render('checker/1/results/full-exemption-pencredits',{
+        'partnerbenefits' : partnerBenefits, 
+        'partnerortext' : partnerOrText
+    });  
+      } else if (applicant.claimsTaxCredits) {
+          res.render('checker/1/tax-credits-over20',{
+               'partnerandtext' : partnerAndText,
+      });
+      } else {
+        res.redirect('pregnancy');
+      }
+});
+
 
     // child tax credit handler
           router.get(/taxcredit-income-handler/, function (req, res) {
@@ -479,18 +488,6 @@ var benType;
       }
 });
 
-          
-    // pension credit handler
-          router.get(/pensioncredit-handler/, function (req, res) {
-      if (req.query.pensioncredit == 'guaranteecred') {
-      res.render('checker/1/results/full-exemption-pencredits',{
-        'partnerbenefits' : partnerBenefits, 
-        'partnerortext' : partnerOrText
-    });  
-      } else {
-        res.redirect('pregnancy');
-      }
-});
       
 
 var benType;
