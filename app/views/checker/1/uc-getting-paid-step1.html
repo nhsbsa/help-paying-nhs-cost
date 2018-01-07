@@ -7,6 +7,42 @@
 
 {% block content %}
 
+<style>
+.panel {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+    border-left-style: none;
+    padding-left:0em;
+    margin-bottom: 0em;
+    }
+
+.panel :first-child {
+    margin-top: -12px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    }
+
+.callout--attention {
+    border: 8px solid #0072ce;
+}
+
+.callout {
+    padding: 16px;
+    background-color: #fff;
+}
+
+@media (min-width: 925px){
+.callout {
+    padding: 32px;
+}
+}
+
+
+
+</style>
+
 <main id="content" role="main">
 <a href="javascript:history.go(-1)" class="link-back">Back</a>
 
@@ -29,10 +65,22 @@
               <label for="yes">Yes, {{iwe}} receive Universal Credit payments</label>
             </div>
 
-            <div class="multiple-choice">
-              <input id="notyet" type="radio" name="getuc" value="notyet">
-              <label for="notyet">Not yet, but {{iwe}} have applied</label>
-            </div>
+<div class="multiple-choice" data-target="uc-reveal">
+        <input id="notyet" type="radio" name="getuc" value="notyet">
+        <label for="notyet">Not yet, but {{iwe}} have applied</label>
+      </div>
+      <div class="panel js-hidden" id="uc-reveal">
+<div class="callout callout--attention">
+    <h3 class="heading-small">
+      While you're waiting on your Universal Credit decision
+    </h3>
+<!--     <p>We can't tell you if your Universal Credit entitles you to help until your first assessment period is complete.</p> -->
+        <p>Until your first assessment period is complete, Universal Credit doesn't entitle you to help with NHS costs.</p>
+        <p>If you need to pay for things like prescriptions or dental treatment, make sure you get a receipt and ask how you could claim a refund once you have your award notice.</p>
+  </div>
+      </div>
+
+
             <p class="form-block">or</p>
              <div class="multiple-choice">
               <input id="no" type="radio" name="getuc" value="no">

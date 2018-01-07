@@ -7,6 +7,34 @@
 
 {% block content %}
 
+<style>
+.panel {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+    border-left-style: none;
+    padding-left:0em;
+    margin-bottom: 0em;
+    }
+
+.callout--attention {
+    border: 8px solid #0072ce;
+}
+
+.callout {
+    padding: 16px;
+    background-color: #fff;
+}
+
+@media (min-width: 925px){
+.callout {
+    padding: 32px;
+}
+}
+
+</style>
+
 <main id="content" role="main">
 <a href="javascript:history.go(-1)" class="link-back">Back</a>
 
@@ -30,9 +58,18 @@
               <label for="yes">Yes</label>
             </div>
 
-            <div class="multiple-choice">
+            <div class="multiple-choice" data-target="under20-reveal">
               <input id="no" type="radio" name="benefittc" value="no">
               <label for="no">No</label>
+            </div>
+            <div class="panel js-hidden" id="under20-reveal">
+              <div class="callout callout--attention">
+                <h3 class="heading-medium">
+                If your parent or guardian gets benefits
+                </h3>
+                <p>If your parent or guardian gets <a href="https://www.nhsbsa.nhs.uk/help-nhs-prescription-costs/free-nhs-prescriptions">certain benefits</a> or they get paid Child Tax Credit for you, you could be entitled to help with NHS costs.</p>
+                <p>Check with your parent or guardian if you think you might be named on their claim.</p>
+              </div>
             </div>
             
           </fieldset>  

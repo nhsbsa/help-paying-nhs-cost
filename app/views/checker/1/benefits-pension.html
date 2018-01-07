@@ -150,9 +150,9 @@ details{
       <div class="column-two-thirds">
 
 
-        <h1 class="heading-large">What type of Pension Credit do {{partnerortext}} you get?</h1>
+        <h1 class="heading-large">What type of Pension Credit do {{partnerortext}} get?</h1>
 
-         <p> There are 2 types of Pension Credit, Guarantee Credit and Savings Credit.</p>
+         <p>Pension Credit is a benefit with 2 parts - Guarantee Credit and Savings Credit.</p>
             <details>
               <summary><span class="summary">I'm not sure what type I get</span></summary>
 
@@ -160,11 +160,11 @@ details{
                 <h3 class="heading-medium">Check your benefit payment letter</h3>
 
                 <h2 class="heading-small">Guarantee Credit</h2>
-                <p>Guarantee Credit tops up your weekly income if it’s below £159.35<!--  (for single people) or £243.25 (for couples) -->.</p>
+                <p>Guarantee Credit tops up your weekly income if it’s below {{pencredguarantee}}<!--  (for single people) or £243.25 (for couples) -->.</p>
 
                 <h2 class="heading-small">Savings Credit</h2>
-                <p>Savings Credit is a payment for people who have saved some money towards their retirement, for example a pension. <p>
-                <p><!-- You have to have a minimum income of £137.35 a week  if you're single, and £218.42 a week if you're in a couple. -->The most in Savings Credit you can get per week is £13.20.</p>
+                <p>Savings Credit is an extra payment for people who have saved some money towards their retirement, for example a pension. <p>
+                <p><!-- You have to have a minimum income of £137.35 a week  if you're single, and £218.42 a week if you're in a couple. -->The most in Savings Credit you can get per week {{pensioncredamount}}.</p>
 
                 <p>If you're still unsure contact the <a href="https://www.gov.uk/contact-pension-service">Pension Service helpline</a>.</p>
               </div>
@@ -184,7 +184,15 @@ details{
             <input id="guaranteecred" type="radio" name="pensioncredit" value="guaranteecred">
             <label for="guaranteecred" id="guaranteecred" class=" block-label">
 
-              <p class="list-discription">Guarantee Credit</p>
+              <p class="list-discription">Guarantee Credit only</p>
+          </label>
+        </div>
+
+        <div class="multiple-choice" style="line-height: 1.25; padding-bottom: 0.6em">
+            <input id="guaranteecred" type="radio" name="pensioncredit" value="guaranteecred">
+            <label for="guaranteecred" id="guaranteecred" class=" block-label">
+
+              <p class="list-discription">Guarantee Credit with Savings Credit</p>
           </label>
         </div>
 
@@ -193,7 +201,7 @@ details{
             <label for="savingcred" id="savingcred" class=" block-label">
 
               <p class="list-discription">Savings Credit</p>
-              <span class="font-xsmall">The maximum you can get per week is £13.20</span>
+              <span class="font-xsmall">The maximum you can get per week {{pensioncredamount}}</span>
             </label>
           </div>
           </fieldset>
