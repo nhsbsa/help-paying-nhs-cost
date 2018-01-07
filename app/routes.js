@@ -60,6 +60,8 @@ var variText = {
       partnersCapAndText = "Your";
       partnerBenefits = "Any";
       parentText = "Is your parent or guardian's";
+      pensionCredAmount = "£13.20";
+      penCredGuarantee = "£159.35";
       iWe = 'I';
       jointOrText = 'your';
       combinedOrText = 'your';
@@ -81,6 +83,8 @@ var variText = {
       partnerBenefits = "Your partner and any";
       parentText = "Is your parent or guardian's";
       parentOrText = "your or your parents";
+      pensionCredAmount = "as a couple is £14.90";
+      penCredGuarantee = "£243.25";
       iWe = 'we';
       jointOrText = 'your joint';
       combinedOrText = "your and your partner's combined";
@@ -397,13 +401,16 @@ var benType;
         } else if (req.query.pencredit == "true") {
           benType = 'Pension credit (Guarantee Credit)';
           res.render('checker/1/benefits-pension', {
-
+          'partnerortext' : partnerOrText,
+          'pencredguarantee' : penCredGuarantee,
+          'pensioncredamount' : pensionCredAmount,
           });
         } else if (req.query.none == 'true') {
             res.redirect('pregnancy');
   
         }
       });
+
 
     // passported benefits handler over 63
 
