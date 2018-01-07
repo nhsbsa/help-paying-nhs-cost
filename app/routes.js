@@ -453,6 +453,22 @@ var benType;
       }
 });
 
+          // jsa handler
+          router.get(/jsa-handler/, function (req, res) {
+      if (req.query.jsatype === "incomejsa") {
+      res.render('checker/1/results/full-exemption-benefits-jsa',{
+        'partnerbenefits' : partnerBenefits, 
+        'partnerortext' : partnerOrText
+      });
+      } else if (applicant.claimsTaxCredits) {
+          res.render('checker/1/tax-credits-over20',{
+               'partnerandtext' : partnerAndText,
+      });
+      } else {
+        res.redirect('pregnancy');
+      }
+});
+
 
     // child tax credit handler
           router.get(/taxcredit-income-handler/, function (req, res) {
@@ -460,17 +476,6 @@ var benType;
       res.redirect('full-exemption-tc'); 
       } else {
         res.redirect('preapp-summary');
-      }
-});
-              // jsa handler
-          router.get(/jsa-handler/, function (req, res) {
-      if (req.query.jsatype === "incomejsa") {
-      res.render('checker/1/results/full-exemption-benefits-jsa',{
-        'partnerbenefits' : partnerBenefits, 
-        'partnerortext' : partnerOrText
-    }); 
-      } else {
-        res.redirect('pregnancy');
       }
 });
 
