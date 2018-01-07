@@ -405,7 +405,7 @@ var benType;
           'pencredguarantee' : penCredGuarantee,
           'pensioncredamount' : pensionCredAmount,
           });
-        } else if (req.query.none == 'true') {
+        } else if (req.query.none == "true") {
             res.redirect('pregnancy');
   
         }
@@ -414,26 +414,26 @@ var benType;
 
     // passported benefits handler over 63
 
-          router.get(/ben63-check/, function (req, res) {
-            if (req.query.taxcredits == "true") {
-            res.redirect('tax-credits-income'); 
+//           router.get(/ben63-check/, function (req, res) {
+//             if (req.query.taxcredits == "true") {
+//             res.redirect('tax-credits-income'); 
 
-          } else if (req.query.pencredit == "true") {
-            benType = 'Pension Credit (Guarantee Credit)';
-            res.render('apply/preapp/benefits-pension', {
-        });
-          } else if (req.query.none == 'true') {
-              res.redirect('war-pension')
-          }
-        });
+//           } else if (req.query.pencredit == "true") {
+//             benType = 'Pension Credit (Guarantee Credit)';
+//             res.render('apply/preapp/benefits-pension', {
+//         });
+//           } else if (req.query.none == 'true') {
+//               res.redirect('war-pension')
+//           }
+//         });
 
-          router.get(/taxcredit-type-handler/, function (req, res) {
-      if (req.query.taxcreditsType == 'wtc') {
-      res.redirect('preapp-summary'); 
-      } else {
-        res.redirect('tax-credits-income');
-      }
-});
+//           router.get(/taxcredit-type-handler/, function (req, res) {
+//       if (req.query.taxcreditsType == 'wtc') {
+//       res.redirect('preapp-summary'); 
+//       } else {
+//         res.redirect('tax-credits-income');
+//       }
+// });
           
 
 
