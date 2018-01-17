@@ -324,7 +324,7 @@ var querystring = require('querystring');
               'iwe' : iWe
           });
       } else {
-        res.redirect('pregnancy');
+        res.redirect('war-pension');
       }
     });
 
@@ -339,7 +339,7 @@ var querystring = require('querystring');
           'iwe' : iWe
          });
       } else {
-        res.redirect('pregnancy');
+        res.redirect('war-pension');
       }
 });
 
@@ -362,7 +362,6 @@ var benType;
         'partnerbenefits' : partnerBenefits, 
         'partnerortext' : partnerOrText
       });
-    
         } else if (req.query.taxcredits == "true") {
           applicant.claimsTaxCredits = true;
           if (req.query.esa == "true") {
@@ -399,8 +398,7 @@ var benType;
           'pensioncredamount' : pensionCredAmount,
           });
         } else if (req.query.none == "true") {
-            res.redirect('pregnancy');
-  
+            res.redirect('war-pension');
         }
       });
 
@@ -442,7 +440,7 @@ var benType;
                'partnerandtext' : partnerAndText,
       });
       } else {
-        res.redirect('pregnancy');
+        res.redirect('war-pension');
       }
 });
 
@@ -458,12 +456,12 @@ var benType;
                'partnerandtext' : partnerAndText,
       });
       } else {
-        res.redirect('pregnancy');
+        res.redirect('war-pension');
       }
 });
 
-              // pension credit handler
-          router.get(/pensioncredit-handler/, function (req, res) {
+      // pension credit handler
+      router.get(/pensioncredit-handler/, function (req, res) {
       if (req.query.pensioncredit == 'guaranteecred') {
       res.render('checker/1/results/full-exemption-pencredits',{
         'partnerbenefits' : partnerBenefits, 
@@ -474,7 +472,7 @@ var benType;
                'partnerandtext' : partnerAndText,
       });
       } else {
-        res.redirect('pregnancy');
+        res.redirect('war-pension');
       }
 });
 
@@ -528,7 +526,7 @@ var benType;
             if (applicant.age > 60) {
                 res.redirect('war-pension');
             } else {
-                res.redirect('pregnancy');
+                res.redirect('war-pension');
             }
       }
     });
@@ -571,7 +569,7 @@ var benType;
             if (applicant.age > 60) {
                 res.redirect('war-pension');
             } else {
-                res.redirect('pregnancy');
+                res.redirect('war-pension');
             }
       }
     });
@@ -596,7 +594,7 @@ var benType;
         'ucresults' : ucResults
       });
             } else {
-                res.redirect('pregnancy');
+                res.redirect('war-pension');
       }
     });
 
@@ -607,7 +605,7 @@ var benType;
         'ucresultselement' : ucResultsElement
       });
       } else {
-        res.redirect('pregnancy');
+        res.redirect('war-pension');
       }
     });
 
@@ -629,10 +627,10 @@ var benType;
       router.get(/war-b4handler/, function (req, res) {
       if (req.query.warPension === 'yes') {
         warPension = true;
-        res.redirect('diabetes-eng');
+        res.redirect('care-home');
       } else {
         warPension = false;
-        res.redirect('diabetes-eng');
+        res.redirect('care-home');
       }
     });
       
@@ -809,7 +807,7 @@ router.get(/illness-b4/, function (req, res) {
                 res.redirect ('/results/answers-medex-lis-v3');
             } else {
                 setPartnerText(applicant.partner);
-          res.render('checker/1/lis-full-width', {
+          res.render('checker/1/results/answers-over-60', {
             'partnerortext' : partnerOrText,
             });
         }
@@ -840,7 +838,7 @@ router.get(/illness-b4/, function (req, res) {
     // carehome savings kickout handler
     router.get(/carehome-savings-handler/, function (req, res) {
       if (req.query.savings === 'no') {
-        res.redirect('lis-full-width');
+        res.redirect('/results/answers-over-60');
       } else {
         res.redirect('savings-kickout');
       }
