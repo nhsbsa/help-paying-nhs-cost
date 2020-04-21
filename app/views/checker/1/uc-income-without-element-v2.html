@@ -52,46 +52,38 @@ strong{
 <a href="javascript:history.go(-1)" class="link-back">Back</a>
   <div class="grid-row">
     <div class="column-two-thirds">
+      <h1 class="heading-large">{{singlejointucelement}}</h1>
+      <p>Take-home pay is used to work out your Universal Credit payments.</p>
+      <p>If you don't work, your take-home pay will be £0.</p>
 
+      <form action="uc-without-elements-handler" method="get" class="form">
 
+        <details>
 
-  <h1 class="heading-large">{{singlejointucelement}}</h1>
+          <summary><span class="summary">Where to find your take-home pay</span></summary>
+          <div class="grid-row">
+            <div class="column-half">
+              <h2 class="heading-medium heading-no-margin">
+              If you have a Universal Credit account online
+              </h2>
+              <p>Your take-home pay is shown on your online Statement.</p>
+              <p>It's under the heading <span class="strong">'Other support you may be able to get'</span>.</p>
+              <img class="uc-statement" src="/public/images/bsa/uc-online.png" alt="an image showing that your take-home pay is towards the bottom of your statement, under the heading 'Other Support you may be able to get" >
+            </div>
+          <div class="column-half">
+          <h2 class="heading-medium heading-no-margin">
+          If you get a monthly Universal Credit payment letter
+          </h2>
+          <p>Your take-home pay is shown on your Universal Credit monthly payment letter.</p>
+          <p>It's usually on page 2 under the heading <span class="strong">'3. We then take account of your take-home pay'</span>.</p>
+          <img class="uc-statement" src="/public/images/bsa/uc-statement-letter.png" style="" alt="an image showing that your take-home pay is on page 2 of your Universal Credit monthly payment letter, under the heading'3. We then take account of your take-home pay'">
 
-<p>Your take-home pay is used to work out your Universal Credit payments if you are in work.</p>
-</div>
-</div>
+        </details>
 
+        <br>
 
-    <form action="uc-without-elements-handler" method="get" class="form">
+        <div class="form-group">
 
-<details>
-
-  <summary><span class="summary">Where to find your take-home pay</span></summary>
-  <div class="grid-row">
-   <div class="column-half">
-  <h2 class="heading-medium heading-no-margin">
-    If you have a Universal Credit account online
-  </h2>
-       <p>Your take-home pay is shown on your online Statement.</p>
-       <p>It's under the heading <span class="strong">'Other support you may be able to get'</span>.</p>
-        <img class="uc-statement" src="/public/images/bsa/uc-online.png" alt="an image showing that your take-home pay is towards the bottom of your statement, under the heading 'Other Support you may be able to get" >
-             </div>
-              <div class="column-half">
-  <h2 class="heading-medium heading-no-margin">
-    If you get a monthly Universal Credit payment letter
-  </h2>
-                  <p>Your take-home pay is shown on your Universal Credit monthly payment letter.</p>
-                  <p>It's usually on page 2 under the heading <span class="strong">'3. We then take account of your take-home pay'</span>.</p>
-        <img class="uc-statement" src="/public/images/bsa/uc-statement-letter.png" style="" alt="an image showing that your take-home pay is on page 2 of your Universal Credit monthly payment letter, under the heading'3. We then take account of your take-home pay'">
-
-            </details>
-             </div>
-            <br>
-
-
-
-  <div class="form-group">
-  
           <fieldset class="inline">
             <legend class="visually-hidden">
               {{singlejointucelement}}
@@ -105,19 +97,15 @@ strong{
             <div class="multiple-choice">
               <input id="no" type="radio" name="ucIncome" value="no">
               <label for="no">No</label>
-            </div>
-            
-          </fieldset>  
-          
+            </div>           
+          </fieldset>    
         </div>
-        
-          <div class="form-group">
-            <input class="button" type="submit"  value="Next">
-          </div>
-
-      </form>
-
-    </div>
+                
+        <div class="form-group">
+          <input class="button" type="submit"  value="Next">
+        </div>
+        </form>
+      </div>
     </div>
 
 </main>

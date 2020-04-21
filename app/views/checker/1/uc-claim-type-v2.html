@@ -19,10 +19,15 @@ s{% extends "layout_bsa.html" %}
 
 
              <form action="uc-type-handler" method="get" class="form">
-               <h1 class="heading-large">Does {{jointortext}} {{parenttext}} Universal Credit include a payment for any of these?</h1>
+               <!--<h1 class="heading-large">Does {{jointortext}} {{parenttext}} Universal Credit include a payment for any of these?</h1> -->
+               <h1 class="heading-large" id="question-heading">
+                <span>As part of your joint Universal Credit, do you have any of these?</span>  
+              </h1>
+
       <ul class="list-bullet">
-          <li>a child or young person who lives with you</li>
-          <li>a disability or health condition that makes it hard for {{partnerOrText}} to work  - this is called limited capability for work</li>
+          <li>Responsibility for a child or young person who lives with you</li>
+          <li>Limited capability for work (LCW)</li>
+          <li>Limited capability for work and work related activity (LCWRA)</li>
       </ul>
 <br>
 

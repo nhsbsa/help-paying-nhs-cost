@@ -624,13 +624,19 @@ var benType;
 
 
     // war pensioner handler
-      router.get(/war-b4handler/, function (req, res) {
+    router.get(/war-b4handler/, function (req, res) {
       if (req.query.warPension === 'yes') {
         warPension = true;
-        res.redirect('care-home');
+        res.render('checker/1/care-home', {
+          'partnerortext' : partnerOrText,
+          'iwe' : iWe
+      });
       } else {
         warPension = false;
-        res.redirect('care-home');
+        res.render('checker/1/care-home', {
+          'partnerortext' : partnerOrText,
+          'iwe' : iWe
+      });
       }
     });
       
@@ -698,16 +704,24 @@ router.get(/illness-b4/, function (req, res) {
     // carehome router
       router.get(/care-home-handler/, function (req, res) {
       if (req.query.carehome === 'yes') {
-           setPartnerText(applicant.partner);
+          carehome = true;
           res.render('checker/1/sc/authority-assessed', {
-            'partnerortext' : partnerOrText
+            'partnersText' : partnersText,
+            'iwe' : iWe
       });
   } else {
+    carehome = false;
     res.render('checker/1/savings1', {
-      'partnerortext' : partnerOrText
+      'partnerortext' : partnerOrText,
+      'iwe' : iWe
     });
   }
 });
+
+
+
+
+
 
 
 //      // saving-handler
@@ -809,6 +823,7 @@ router.get(/illness-b4/, function (req, res) {
                 setPartnerText(applicant.partner);
           res.render('checker/1/results/answers-over-60', {
             'partnerortext' : partnerOrText,
+            'iwe' : iWe
             });
         }
         }
@@ -838,7 +853,7 @@ router.get(/illness-b4/, function (req, res) {
     // carehome savings kickout handler
     router.get(/carehome-savings-handler/, function (req, res) {
       if (req.query.savings === 'no') {
-        res.redirect('/results/answers-over-60');
+        res.redirect('results/answers-over-60');
       } else {
         res.redirect('savings-kickout');
       }
